@@ -1,5 +1,5 @@
 resource "kubernetes_cluster_role_binding" "oidc_cluster_role_bindings" {
-  for_each = var.cluster_role_bindings
+  for_each = var.oidc_cluster_role_bindings
 
   metadata {
     name   = "oidc-${each.value["oidc_group_name"]}-${each.value["cluster_role_name"]}"

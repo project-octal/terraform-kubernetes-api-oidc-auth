@@ -4,7 +4,7 @@ variable "oidc_groups_prefix" {
   default     = "oidc:"
 }
 
-variable "cluster_role_bindings" {
+variable "oidc_cluster_role_bindings" {
   type = set(object({
     cluster_role_name = string
     oidc_group_name   = string
