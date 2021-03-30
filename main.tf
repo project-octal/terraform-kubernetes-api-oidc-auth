@@ -1,3 +1,6 @@
+locals {
+  oidc_groups_prefix = var.oidc_groups_prefix == null ? "oidc:" : var.oidc_groups_prefix
+}
 resource "kubernetes_cluster_role_binding" "oidc_cluster_role_bindings" {
   count = length(var.oidc_cluster_role_bindings)
 
@@ -12,6 +15,6 @@ resource "kubernetes_cluster_role_binding" "oidc_cluster_role_bindings" {
   }
   subject {
     kind = "Group"
-    name = "${var.oidc_groups_prefix}${var.oidc_cluster_role_bindings[count.index].oidc_group_name}"
+    name = "${local.oidc_groups_prefix}${var.oidc_cluster_role_bindings[count.index].oidc_group_name}"
   }
 }
